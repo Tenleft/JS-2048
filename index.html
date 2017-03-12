@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="http://dev.dcloud.net.cn/mui/dist/css/mui.min.css">
+		<script src="http://dev.dcloud.net.cn/mui/dist/js/mui.min.js"></script>
+
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				keyEventBind: {
+					menubutton: false //Boolean(默认true)关闭menu按键监听
+				},
+				//处理窗口关闭前的业务
+				beforeback: function() {
+					//... //窗口关闭前处理其他业务详情点击 ↑ "关闭页面"链接查看
+				}
+			});
+		</script>
+		<style>
+			.animated {
+				-webkit-animation-duration: 1s;
+				animation-duration: 1s;
+				-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+			}
+			
+			.animated.bounceIn {
+				-webkit-animation-duration: 1s;
+				animation-duration: 1s;
+			}
+			
+			@-webkit-keyframes flip {
+				0% {
+					-webkit-transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
+					transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
+					-webkit-animation-timing-function: ease-out;
+					animation-timing-function: ease-out
+				}
+				40% {
+					-webkit-transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+					transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+					-webkit-animation-timing-function: ease-out;
+					animation-timing-function: ease-out
+				}
+				50% {
+					-webkit-transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+					transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+					-webkit-animation-timing-function: ease-in;
+					animation-timing-function: ease-in
+				}
+				80% {
+					-webkit-transform: perspective(400px) scale3d(.95, .95, .95);
+					transform: perspective(400px) scale3d(.95, .95, .95);
+					-webkit-animation-timing-function: ease-in;
+					animation-timing-function: ease-in
+				}
+				100% {
+					-webkit-transform: perspective(400px);
+					transform: perspective(400px);
+					-webkit-animation-timing-function: ease-in;
+					animation-timing-function: ease-in
+				}
+			}
+			
+			@keyframes flip {
+				0% {
+					-webkit-transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
+					transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
+					-webkit-animation-timing-function: ease-out;
+					animation-timing-function: ease-out
+				}
+				40% {
+					-webkit-transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+					transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+					-webkit-animation-timing-function: ease-out;
+					animation-timing-function: ease-out
+				}
+				50% {
+					-webkit-transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+					transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+					-webkit-animation-timing-function: ease-in;
+					animation-timing-function: ease-in
+				}
+				80% {
+					-webkit-transform: perspective(400px) scale3d(.95, .95, .95);
+					transform: perspective(400px) scale3d(.95, .95, .95);
+					-webkit-animation-timing-function: ease-in;
+					animation-timing-function: ease-in
+				}
+				100% {
+					-webkit-transform: perspective(400px);
+					transform: perspective(400px);
+					-webkit-animation-timing-function: ease-in;
+					animation-timing-function: ease-in
+				}
+			}
+			
+			.animated.flip {
+				-webkit-backface-visibility: visible;
+				backface-visibility: visible;
+				-webkit-animation-name: flip;
+				animation-name: flip
+			}
+			
+			@-webkit-keyframes bounceIn {
+				0%,
+				100%,
+				20%,
+				40%,
+				60%,
+				80% {
+					-webkit-animation-timing-function: cubic-bezier(0.215, .61, .355, 1);
+					animation-timing-function: cubic-bezier(0.215, .61, .355, 1)
+				}
+				0% {
+					opacity: 0;
+					-webkit-transform: scale3d(.3, .3, .3);
+					transform: scale3d(.3, .3, .3)
+				}
+				20% {
+					-webkit-transform: scale3d(1.1, 1.1, 1.1);
+					transform: scale3d(1.1, 1.1, 1.1)
+				}
+				40% {
+					-webkit-transform: scale3d(.9, .9, .9);
+					transform: scale3d(.9, .9, .9)
+				}
+				60% {
+					opacity: 1;
+					-webkit-transform: scale3d(1.03, 1.03, 1.03);
+					transform: scale3d(1.03, 1.03, 1.03)
+				}
+				80% {
+					-webkit-transform: scale3d(.97, .97, .97);
+					transform: scale3d(.97, .97, .97)
+				}
+				100% {
+					opacity: 1;
+					-webkit-transform: scale3d(1, 1, 1);
+					transform: scale3d(1, 1, 1)
+				}
+			}
+			
+			@keyframes bounceIn {
+				0%,
+				100%,
+				20%,
+				40%,
+				60%,
+				80% {
+					-webkit-animation-timing-function: cubic-bezier(0.215, .61, .355, 1);
+					animation-timing-function: cubic-bezier(0.215, .61, .355, 1)
+				}
+				0% {
+					opacity: 0;
+					-webkit-transform: scale3d(.3, .3, .3);
+					transform: scale3d(.3, .3, .3)
+				}
+				20% {
+					-webkit-transform: scale3d(1.1, 1.1, 1.1);
+					transform: scale3d(1.1, 1.1, 1.1)
+				}
+				40% {
+					-webkit-transform: scale3d(.9, .9, .9);
+					transform: scale3d(.9, .9, .9)
+				}
+				60% {
+					opacity: 1;
+					-webkit-transform: scale3d(1.03, 1.03, 1.03);
+					transform: scale3d(1.03, 1.03, 1.03)
+				}
+				80% {
+					-webkit-transform: scale3d(.97, .97, .97);
+					transform: scale3d(.97, .97, .97)
+				}
+				100% {
+					opacity: 1;
+					-webkit-transform: scale3d(1, 1, 1);
+					transform: scale3d(1, 1, 1)
+				}
+			}
+			
+			.bounceIn {
+				-webkit-animation-name: bounceIn;
+				animation-name: bounceIn
+			}
+			
+			@-webkit-keyframes bounceInDown {
+				0%,
+				100%,
+				60%,
+				75%,
+				90% {
+					-webkit-animation-timing-function: cubic-bezier(0.215, .61, .355, 1);
+					animation-timing-function: cubic-bezier(0.215, .61, .355, 1)
+				}
+				0% {
+					opacity: 0;
+					-webkit-transform: translate3d(0, -200px, 0);
+					transform: translate3d(0, -200px, 0)
+				}
+				60% {
+					opacity: 1;
+					-webkit-transform: translate3d(0, 5px, 0);
+					transform: translate3d(0, 5px, 0)
+				}
+				75% {
+					-webkit-transform: translate3d(0, -5px, 0);
+					transform: translate3d(0, -5px, 0)
+				}
+				90% {
+					-webkit-transform: translate3d(0, 2px, 0);
+					transform: translate3d(0, 2px, 0)
+				}
+				100% {
+					-webkit-transform: none;
+					transform: none
+				}
+			}
+			
+			@keyframes bounceInDown {
+				0%,
+				100%,
+				60%,
+				75%,
+				90% {
+					-webkit-animation-timing-function: cubic-bezier(0.215, .61, .355, 1);
+					animation-timing-function: cubic-bezier(0.215, .61, .355, 1)
+				}
+				0% {
+					opacity: 0;
+					-webkit-transform: translate3d(0, -200px, 0);
+					transform: translate3d(0, -200px, 0)
+				}
+				60% {
+					opacity: 1;
+					-webkit-transform: translate3d(0, 5px, 0);
+					transform: translate3d(0, 5px, 0)
+				}
+				75% {
+					-webkit-transform: translate3d(0, -5px, 0);
+					transform: translate3d(0, -5px, 0)
+				}
+				90% {
+					-webkit-transform: translate3d(0, 2px, 0);
+					transform: translate3d(0, 2px, 0)
+				}
+				100% {
+					-webkit-transform: none;
+					transform: none
+				}
+			}
+			
+			.bounceInDown {
+				-webkit-animation-name: bounceInDown;
+				animation-name: bounceInDown
+			}
+			
+			@-webkit-keyframes bounceInLeft {
+				0%,
+				100%,
+				60%,
+				75%,
+				90% {
+					-webkit-animation-timing-function: cubic-bezier(0.215, .61, .355, 1);
+					animation-timing-function: cubic-bezier(0.215, .61, .355, 1)
+				}
+				0% {
+					opacity: 0;
+					-webkit-transform: translate3d(-200px, 0, 0);
+					transform: translate3d(-200px, 0, 0)
+				}
+				60% {
+					opacity: 1;
+					-webkit-transform: translate3d(5px, 0, 0);
+					transform: translate3d(5px, 0, 0)
+				}
+				75% {
+					-webkit-transform: translate3d(-5px, 0, 0);
+					transform: translate3d(-5px, 0, 0)
+				}
+				90% {
+					-webkit-transform: translate3d(2px, 0, 0);
+					transform: translate3d(2px, 0, 0)
+				}
+				100% {
+					-webkit-transform: none;
+					transform: none
+				}
+			}
+			
+			@keyframes bounceInLeft {
+				0%,
+				100%,
+				60%,
+				75%,
+				90% {
+					-webkit-animation-timing-function: cubic-bezier(0.215, .61, .355, 1);
+					animation-timing-function: cubic-bezier(0.215, .61, .355, 1)
+				}
+				0% {
+					opacity: 0;
+					-webkit-transform: translate3d(-200px, 0, 0);
+					transform: translate3d(-200px, 0, 0)
+				}
+				60% {
+					opacity: 1;
+					-webkit-transform: translate3d(5px, 0, 0);
+					transform: translate3d(5px, 0, 0)
+				}
+				75% {
+					-webkit-transform: translate3d(-5px, 0, 0);
+					transform: translate3d(-5px, 0, 0)
+				}
+				90% {
+					-webkit-transform: translate3d(2px, 0, 0);
+					transform: translate3d(2px, 0, 0)
+				}
+				100% {
+					-webkit-transform: none;
+					transform: none
+				}
+			}
+			
+			.bounceInLeft {
+				-webkit-animation-name: bounceInLeft;
+				animation-name: bounceInLeft
+			}
+			
+			@-webkit-keyframes bounceInRight {
+				0%,
+				100%,
+				60%,
+				75%,
+				90% {
+					-webkit-animation-timing-function: cubic-bezier(0.215, .61, .355, 1);
+					animation-timing-function: cubic-bezier(0.215, .61, .355, 1)
+				}
+				0% {
+					opacity: 0;
+					-webkit-transform: translate3d(200px, 0, 0);
+					transform: translate3d(200px, 0, 0)
+				}
+				60% {
+					opacity: 1;
+					-webkit-transform: translate3d(-5px, 0, 0);
+					transform: translate3d(-5px, 0, 0)
+				}
+				75% {
+					-webkit-transform: translate3d(5px, 0, 0);
+					transform: translate3d(5px, 0, 0)
+				}
+				90% {
+					-webkit-transform: translate3d(-2px, 0, 0);
+					transform: translate3d(-2px, 0, 0)
+				}
+				100% {
+					-webkit-transform: none;
+					transform: none
+				}
+			}
+			
+			@keyframes bounceInRight {
+				0%,
+				100%,
+				60%,
+				75%,
+				90% {
+					-webkit-animation-timing-function: cubic-bezier(0.215, .61, .355, 1);
+					animation-timing-function: cubic-bezier(0.215, .61, .355, 1)
+				}
+				0% {
+					opacity: 0;
+					-webkit-transform: translate3d(200px, 0, 0);
+					transform: translate3d(200px, 0, 0)
+				}
+				60% {
+					opacity: 1;
+					-webkit-transform: translate3d(-5px, 0, 0);
+					transform: translate3d(-5px, 0, 0)
+				}
+				75% {
+					-webkit-transform: translate3d(5px, 0, 0);
+					transform: translate3d(5px, 0, 0)
+				}
+				90% {
+					-webkit-transform: translate3d(-2px, 0, 0);
+					transform: translate3d(-2px, 0, 0)
+				}
+				100% {
+					-webkit-transform: none;
+					transform: none
+				}
+			}
+			
+			.bounceInRight {
+				-webkit-animation-name: bounceInRight;
+				animation-name: bounceInRight
+			}
+			
+			@-webkit-keyframes bounceInUp {
+				0%,
+				100%,
+				60%,
+				75%,
+				90% {
+					-webkit-animation-timing-function: cubic-bezier(0.215, .61, .355, 1);
+					animation-timing-function: cubic-bezier(0.215, .61, .355, 1)
+				}
+				0% {
+					opacity: 0;
+					-webkit-transform: translate3d(0, 200px, 0);
+					transform: translate3d(0, 200px, 0)
+				}
+				60% {
+					opacity: 1;
+					-webkit-transform: translate3d(0, -5px, 0);
+					transform: translate3d(0, -5px, 0)
+				}
+				75% {
+					-webkit-transform: translate3d(0, 5px, 0);
+					transform: translate3d(0, 5px, 0)
+				}
+				90% {
+					-webkit-transform: translate3d(0, -2px, 0);
+					transform: translate3d(0, -2px, 0)
+				}
+				100% {
+					-webkit-transform: translate3d(0, 0, 0);
+					transform: translate3d(0, 0, 0)
+				}
+			}
+			
+			@keyframes bounceInUp {
+				0%,
+				100%,
+				60%,
+				75%,
+				90% {
+					-webkit-animation-timing-function: cubic-bezier(0.215, .61, .355, 1);
+					animation-timing-function: cubic-bezier(0.215, .61, .355, 1)
+				}
+				0% {
+					opacity: 0;
+					-webkit-transform: translate3d(0, 200px, 0);
+					transform: translate3d(0, 200px, 0)
+				}
+				60% {
+					opacity: 1;
+					-webkit-transform: translate3d(0, -5px, 0);
+					transform: translate3d(0, -5px, 0)
+				}
+				75% {
+					-webkit-transform: translate3d(0, 5px, 0);
+					transform: translate3d(0, 5px, 0)
+				}
+				90% {
+					-webkit-transform: translate3d(0, -2px, 0);
+					transform: translate3d(0, -2px, 0)
+				}
+				100% {
+					-webkit-transform: translate3d(0, 0, 0);
+					transform: translate3d(0, 0, 0)
+				}
+			}
+			
+			.bounceInUp {
+				-webkit-animation-name: bounceInUp;
+				animation-name: bounceInUp
+			}
+			
+			#dvScore {
+				font-size: 30px;
+				height: 80px;
+				line-height: 80px;
+				font-family: "microsoft yahei";
+				text-align: center;
+				vertical-align: middle;
+			}
+			
+			#dvScore>a {
+				font-size: 50px;
+			}
+			
+			.cell {
+				background: #cdc1b4;
+				color: #776e65;
+				font-size: 50px;
+				line-height: initial;
+				font-weight: bold;
+			}
+			
+			#container {
+				background: #bbada0;
+				padding-right: 0;
+				display: inline-block;
+				text-align: left;
+				max-width: 500px;
+			}
+			
+		</style>
+
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div style="padding: 10px 10px 0">
+				<button type="button" id="Reset" class="mui-btn mui-btn-royal mui-btn-block mui-btn-outlined">重 来</button>
+			</div>
+			<div id="dvScore"><span>分数：</span>
+				<a id="aScore">0</a>
+			</div>
+			<div style="text-align: center">
+			<ul class="mui-table-view mui-grid-view" id="container">
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<div class="cell animated"></div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<div class="cell animated"></div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<div class="cell animated"></div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<div class="cell animated"></div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<div class="cell animated"></div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<div class="cell animated"></div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<div class="cell animated"></div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<div class="cell animated"></div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<div class="cell animated"></div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<div class="cell animated"></div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<div class="cell animated"></div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<div class="cell animated"></div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<div class="cell animated"></div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<div class="cell animated"></div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<div class="cell animated"></div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<div class="cell animated"></div>
+				</li>
+			</ul>
+			</div>
+			<div id="dvWinMsg" style="padding: 10px 10px 0">
+
+			</div>
+		</div>
+		<script>
+					
+			var cellWidth, //数字宽度
+				length = 4, //游戏为 4 X 4的格子，改动此值还需改html布局
+				startXY = [], //下标  0-> X , 下标  1-> Y
+				endXY = [], //下标  0-> X , 下标  1-> Y
+				numArr, moveNumArr,
+				totalScore = 0,
+				isWin = false,
+				showNum=0;
+			var cells = document.getElementsByClassName("cell");
+			var aScoreObj = document.getElementById("aScore");
+			var dvWinMsg = document.getElementById("dvWinMsg");
+			document.getElementById("Reset").onclick = function() {
+				dvWinMsg.innerHTML="";
+				totalScore=0;
+				aScoreObj.innerText =totalScore;
+				showNum=0;
+				isWin = false;
+				InitGame();
+				showAuthor();
+			};
+			InitGame();
+			var cObj = document.getElementById("container");
+			var text = document.getElementById("text");
+			cObj.addEventListener("touchmove", function(event) {
+				event.preventDefault();
+			});
+			cObj.addEventListener("touchstart", function(e) {
+				e = e || window.event;
+				startXY[0] = e.touches[0].clientX;
+				startXY[1] = e.touches[0].clientY;
+			}, false);
+
+			cObj.addEventListener("touchend", function(e) {
+				if(startXY.length != 2) {
+					return;
+				}
+				e = e || window.event;
+				endXY[0] = e.changedTouches[0].clientX;
+				endXY[1] = e.changedTouches[0].clientY;
+				var x = endXY[0] - startXY[0];
+				var y = endXY[1] - startXY[1];
+				if(isWin) {
+					return;
+				}
+				if(Math.abs(x) < cellWidth && Math.abs(y) >= cellWidth) {
+					if(y < 0) {
+						MoveUp();
+					} else {
+						MoveDown();
+					}
+				} else if(Math.abs(y) < cellWidth && Math.abs(x) >= cellWidth) {
+					if(x < 0) {
+						MoveLeft();
+					} else {
+						MoveRight();
+					}
+				}
+				startXY = [];
+			}, false);
+
+			document.onkeyup= function (e) { 
+				e=e||window.event;
+				if (e.keyCode==37||e.keyCode==65) {
+					//左
+				MoveLeft();
+				} else if (e.keyCode==38||e.keyCode==87) {
+					//上
+					MoveUp();
+				} else if (e.keyCode==39||e.keyCode==68){
+					//右 
+						MoveRight();
+				} else if (e.keyCode==40||e.keyCode==83){
+					//下
+					MoveDown();
+				}
+			 }
+			//
+			function showAuthor(){
+				mui.toast('作者：zw');
+			}
+			showAuthor();
+			//初始化游戏
+			function InitGame() {
+				var j, i, k, cellIndex;
+				numArr = new Array(length);
+				moveNumArr = new Array(length);
+				for(j = 0; j < length; j++) {
+					numArr[j] = [];
+					moveNumArr[j] = [];
+					for(k = 0; k < length; k++) {
+						numArr[j].push(0);
+						moveNumArr[j].push(0);
+					}
+				}
+
+				var startX = parseInt(Math.random() * length),
+					startY = parseInt(Math.random() * length),
+					start2X = parseInt(Math.random() * length),
+					start2Y = parseInt(Math.random() * length);
+
+				numArr[startX][startY] = RandomStartNum();
+				while(startX == start2X && startY == (start2Y = parseInt(Math.random() * length))) {}
+				numArr[start2X][start2Y] = RandomStartNum();
+
+				cellWidth = cells[0].offsetWidth;
+				for(i = 0; i < length; i++) {
+					for(k = 0; k < length; k++) {
+						cellIndex = i * length + k;
+						cells[cellIndex].style.height = cellWidth + "px";
+						cells[cellIndex].innerText = '';
+						cells[cellIndex].style.background = "#cdc1b4";
+						cells[cellIndex].style.lineHeight = cellWidth + "px";
+						if((i == startX && k == startY) || (i == start2X && k == start2Y)) {
+							cells[cellIndex].innerText = numArr[i][k];
+							cells[cellIndex].style.color = "#776e65";
+							cells[cellIndex].style.background = "#eee4da";
+						}
+					}
+				}
+			}
+
+			//向上移动
+			function MoveUp() {
+				var moveArr = CanMoveUpArr(),
+					newArr, newArr2,
+					isSetNewNum = false; //是否設置新的值
+				for(var i = 0; i < moveArr.length; i++) {
+					if(moveArr[i]) {
+						isSetNewNum = true;
+						newArr = [];
+						newArr2 = [];
+						//第一步 去除 没有数字的 格子。
+						for(var j = 0; j < length; j++) {
+							if(numArr[j][i] != 0) {
+								newArr.push(numArr[j][i]);
+							}
+						}
+
+						//第二步 合併數字。
+						for(var o = 0; o < newArr.length; o++) {
+							if(o < newArr.length - 1 && newArr[o] == newArr[o + 1]) {
+								//分数处理...
+								var score = newArr[o] + newArr[o];
+								totalScore += score;
+								moveNumArr[o][i] = 3;
+								newArr2.push(score);
+								o++;
+							} else {
+								newArr2.push(newArr[o]);
+							}
+						}
+						var tLength = length - newArr2.length;
+						for(var t = 0; t < tLength; t++) {
+							newArr2.push(0);
+						}
+						for(var k = 0; k < length; k++) {
+							if(newArr2[k] != 0) {
+								if(newArr2[k] != numArr[k][i] && moveNumArr[k][i] == 0) {
+									moveNumArr[k][i] = 1;
+								} else if(newArr2[k] == numArr[k][i] && moveNumArr[k][i] == 0) {
+									if(k > 0 && k < length - 1 && numArr[k + 1][i] == numArr[k - 1][i] && numArr[k - 1][i] == numArr[k][i]) {
+										moveNumArr[k][i] = 1;
+									}
+								}
+							}
+						}
+						//设置新值
+						for(var o = 0; o < length; o++) {
+							numArr[o][i] = newArr2[o];
+						}
+					}
+				}
+				if(isSetNewNum) {
+					SetNewNum("up");
+					RefreshGame("up");
+					isSetNewNum = false;
+				}
+			}
+			//檢測每行是否能向上移動，返回bool數組 例：[true,false,false,false]表示只有第一行能移動
+			function CanMoveUpArr() {
+				var arr = [],
+					i, j, max, temp, t, tempArr;
+				for(i = 0; i < length; i++) {
+					tempArr = [];
+					for(t = 0; t < length; t++) {
+						tempArr.push(numArr[t][i]);
+					}
+					max = GetArrMax(tempArr);
+
+					if(max !== 0) {
+						for(j = length - 1; j > 0; j--) {
+							temp = tempArr[j - 1] - tempArr[j];
+							if(temp == 0 && tempArr[j] != 0) {
+								arr.push(true);
+								break;
+							} else if(temp < 0 && tempArr[j - 1] == 0) {
+								arr.push(true);
+								break;
+							}
+						}
+						if(j == 0) {
+							arr.push(false);
+						}
+					} else {
+						arr.push(false);
+					}
+				}
+				return arr;
+			}
+
+			//向下移动
+			function MoveDown() {
+				var moveArr = CanMoveDownArr(),
+					newArr, newArr2,
+					isSetNewNum = false; //是否設置新的值
+				for(var i = 0; i < moveArr.length; i++) {
+					if(moveArr[i]) {
+						isSetNewNum = true;
+						newArr = [];
+						newArr2 = [];
+						//第一步 去除 没有数字的 格子。
+						for(var j = length - 1; j >= 0; j--) {
+							if(numArr[j][i] != 0) {
+								newArr.push(numArr[j][i]);
+							}
+						}
+
+						//第二步 合併數字。
+						for(var o = 0; o < newArr.length; o++) {
+							if(o < newArr.length - 1 && newArr[o] == newArr[o + 1]) {
+								//分数处理...
+								var score = newArr[o] + newArr[o];
+								totalScore += score;
+								moveNumArr[length - o - 1][i] = 3;
+								newArr2.push(score);
+								o++;
+							} else {
+								newArr2.push(newArr[o]);
+							}
+						}
+						var tLength = length - newArr2.length;
+						for(var t = 0; t < tLength; t++) {
+							newArr2.push(0);
+						}
+						for(var k = 0; k < length; k++) {
+							if(newArr2[k] != 0) {
+								if(newArr2[k] != numArr[length - k - 1][i] && moveNumArr[length - k - 1][i] == 0) {
+									moveNumArr[length - k - 1][i] = 1;
+								} else if(newArr2[k] == numArr[length - k - 1][i] && moveNumArr[length - k - 1][i] == 0) {
+									if(k > 0 && k < length - 1 && numArr[length - k - 1 + 1][i] == numArr[length - k - 1 - 1][i] && numArr[length - k - 1 - 1][i] == numArr[length - k - 1][i]) {
+										moveNumArr[length - k - 1][i] = 1;
+									}
+								}
+							}
+						}
+						//设置新值
+						for(var o = 0; o < length; o++) {
+							numArr[length - o - 1][i] = newArr2[o];
+						}
+					}
+				}
+				if(isSetNewNum) {
+					SetNewNum("down");
+					RefreshGame("down");
+					isSetNewNum = false;
+				}
+			}
+			//檢測每行是否能向下移動，返回bool數組 例：[true,false,false,false]表示只有第一行能移動
+			function CanMoveDownArr() {
+				var arr = [],
+					i, j, max, temp, t, tempArr;
+				for(i = 0; i < length; i++) {
+					tempArr = [];
+					for(t = 0; t < length; t++) {
+						tempArr.push(numArr[t][i]);
+					}
+					max = GetArrMax(tempArr);
+
+					if(max !== 0) {
+						for(j = length - 1; j > 0; j--) {
+							temp = tempArr[j] - tempArr[j - 1];
+							if(temp == 0 && tempArr[j] != 0) {
+								arr.push(true);
+								break;
+							} else if(temp < 0 && tempArr[j] == 0) {
+								arr.push(true);
+								break;
+							}
+						}
+						if(j == 0) {
+							arr.push(false);
+						}
+					} else {
+						arr.push(false);
+					}
+				}
+				return arr;
+			}
+
+			//向左移动
+			function MoveLeft() {
+				var moveArr = CanMoveLeftArr(),
+					newArr, newArr2,
+					isSetNewNum = false; //是否設置新的值
+				for(var i = 0; i < moveArr.length; i++) {
+					if(moveArr[i]) {
+						isSetNewNum = true;
+						newArr = [];
+						newArr2 = [];
+						//第一步 去除 没有数字的 格子。
+						for(var j = 0; j < length; j++) {
+							if(numArr[i][j] != 0) {
+								newArr.push(numArr[i][j]);
+							}
+						}
+
+						//第二步 合併數字。
+						for(var o = 0; o < newArr.length; o++) {
+							if(o < newArr.length - 1 && newArr[o] == newArr[o + 1]) {
+								//分数处理...
+								var score = newArr[o] + newArr[o];
+								totalScore += score;
+								moveNumArr[i][o] = 3;
+								newArr2.push(score);
+								o++;
+							} else {
+								newArr2.push(newArr[o]);
+							}
+						}
+						var tLength = length - newArr2.length;
+						for(var t = 0; t < tLength; t++) {
+							newArr2.push(0);
+						}
+						for(var k = 0; k < length; k++) {
+							if(newArr2[k] != 0) {
+								if(newArr2[k] != numArr[i][k] && moveNumArr[i][k] == 0) {
+									moveNumArr[i][k] = 1;
+								} else if(newArr2[k] == numArr[i][k] && moveNumArr[i][k] == 0) {
+									if(k > 0 && k < length - 1 && numArr[i][k + 1] == numArr[i][k - 1] && numArr[i][k - 1] == numArr[i][k]) {
+										moveNumArr[i][k] = 1;
+									}
+								}
+							}
+						}
+						numArr[i] = newArr2;
+					}
+				}
+				if(isSetNewNum) {
+					SetNewNum("left");
+					RefreshGame("left");
+					isSetNewNum = false;
+				}
+			}
+			//檢測每行是否能向左移動，返回bool數組 例：[true,false,false,false]表示只有第一行能移動
+			function CanMoveLeftArr() {
+				var arr = [],
+					i, j, max, temp;
+				for(i = 0; i < length; i++) {
+					max = GetArrMax(numArr[i]);
+					if(max !== 0) {
+						for(j = length - 1; j > 0; j--) {
+							temp = numArr[i][j - 1] - numArr[i][j];
+							if(temp == 0 && numArr[i][j] != 0) {
+								arr.push(true);
+								break;
+							} else if(temp < 0 && numArr[i][j - 1] == 0) {
+								arr.push(true);
+								break;
+							}
+						}
+						if(j == 0) {
+							arr.push(false);
+						}
+					} else {
+						arr.push(false);
+					}
+				}
+				return arr;
+			}
+
+			//向右移动
+			function MoveRight() {
+				var moveArr = CanMoveRightArr(),
+					newArr, newArr2,
+					isSetNewNum = false; //是否設置新的值
+				for(var i = 0; i < moveArr.length; i++) {
+					if(moveArr[i]) {
+						isSetNewNum = true;
+						newArr = [];
+						newArr2 = [];
+						//第一步 去除 没有数字的 格子。
+						for(var j = 0; j < length; j++) {
+							if(numArr[i][j] != 0) {
+								newArr.push(numArr[i][j]);
+							}
+						}
+
+						//第二步 合併數字。
+						for(var o = newArr.length - 1; o >= 0; o--) {
+							if(o - 1 >= 0 && newArr[o] == newArr[o - 1]) {
+								//分数处理...
+								var score = newArr[o] + newArr[o];
+								totalScore += score;
+								moveNumArr[i][length - newArr.length + o] = 3;
+								newArr2.push(score);
+								o--;
+							} else {
+								newArr2.push(newArr[o]);
+							}
+						}
+						var tLength = length - newArr2.length;
+						for(var t = 0; t < tLength; t++) {
+							newArr2.push(0);
+						}
+						newArr2.reverse();
+						for(var k = 0; k < length; k++) {
+							if(newArr2[k] != 0) {
+								if(newArr2[k] != numArr[i][k] && moveNumArr[i][k] == 0) {
+									moveNumArr[i][k] = 1;
+								} else if(newArr2[k] == numArr[i][k] && moveNumArr[i][k] == 0) {
+									if(k > 0 && k < length - 1 && numArr[i][k + 1] == numArr[i][k - 1] && numArr[i][k - 1] == numArr[i][k]) {
+										moveNumArr[i][k] = 1;
+									}
+								}
+							}
+						}
+
+						numArr[i] = newArr2;
+					}
+				}
+				if(isSetNewNum) {
+					SetNewNum("right");
+					RefreshGame("right");
+					isSetNewNum = false;
+				}
+			}
+			//檢測每行是否能向右移動，返回bool數組 例：[true,false,false,false]表示只有第一行能移動
+			function CanMoveRightArr() {
+				var arr = [],
+					i, j, max, temp;
+				for(i = 0; i < length; i++) {
+					max = GetArrMax(numArr[i]);
+					if(max !== 0) {
+						for(j = 0; j < length - 1; j++) {
+							temp = numArr[i][j + 1] - numArr[i][j];
+							if(temp == 0 && numArr[i][j] != 0) {
+								arr.push(true);
+								break;
+							} else if(temp < 0 && numArr[i][j + 1] == 0) {
+								arr.push(true);
+								break;
+							}
+						}
+						if(j == length - 1) {
+							arr.push(false);
+						}
+					} else {
+						arr.push(false);
+					}
+				}
+				return arr;
+			}
+			function SetEndMsg(text){
+				dvWinMsg.innerHTML="";
+				var btn = document.createElement("button");
+				btn.classList.add("mui-btn");
+				btn.classList.add("mui-btn-danger");
+				btn.classList.add("mui-btn-block");
+				btn.classList.add("mui-btn-outlined");
+				btn.innerText =text ;
+				dvWinMsg.appendChild(btn);
+				
+			}
+			
+			//刷新遊戲，i:行索引 moveDirection：向手指移動方向。只有這四個值 up,down,left,right
+			function RefreshGame(moveDirection) {
+				var i, j, cellIndex;
+				aScoreObj.innerText = totalScore;
+				for(i = 0; i < length; i++) {
+					for(j = 0; j < numArr[i].length; j++) {
+						cellIndex = i * length + j;
+						if(numArr[i][j] == 2048&&showNum<3) {
+							showNum++;
+							mui.toast('小样，你以为你这样就赢了吗？游戏还没结束哦！');
+						}
+						if(numArr[i][j] == 4096) {
+							mui.toast('小伙子不错，跟我学做菜吧！');
+							isWin = true;
+							SetEndMsg("You win!");
+							return;
+						}
+						cells[cellIndex].classList.remove("bounceInUp");
+						cells[cellIndex].classList.remove("bounceInDown");
+						cells[cellIndex].classList.remove("bounceInLeft");
+						cells[cellIndex].classList.remove("bounceInRight");
+						cells[cellIndex].classList.remove("bounceIn");
+						cells[cellIndex].classList.remove("flip");
+						if(moveNumArr[i][j] == 1) {
+							switch(moveDirection) {
+								case "up":
+									cells[cellIndex].classList.add("bounceInUp");
+									break;
+								case "down":
+									cells[cellIndex].classList.add("bounceInDown");
+									break;
+								case "left":
+									cells[cellIndex].classList.add("bounceInRight");
+									break;
+								case "right":
+									cells[cellIndex].classList.add("bounceInLeft");
+									break;
+							}
+							moveNumArr[i][j] = 0;
+						} else if(moveNumArr[i][j] == 2) {
+							(function(ii, jj) {
+								setTimeout(function() {
+									var findex = cellIndex = ii * length + jj;
+									cells[findex].classList.add("flip");
+									moveNumArr[ii][jj] = 0;
+								}, 100);
+							})(i, j);
+						} else if(moveNumArr[i][j] == 3) {
+							(function(ii, jj) {
+								setTimeout(function() {
+									var findex = cellIndex = ii * length + jj;
+									cells[findex].classList.add("bounceIn");
+									moveNumArr[ii][jj] = 0;
+								}, 100);
+							})(i, j);
+						}
+						switch(numArr[i][j]) {
+							case 0:
+								cells[cellIndex].innerText = '';
+								cells[cellIndex].style.background = "#cdc1b4";
+								break;
+							case 2:
+								cells[cellIndex].innerText = numArr[i][j];
+								cells[cellIndex].style.background = "#eee4da";
+								cells[cellIndex].style.color = "#776e65";
+								cells[cellIndex].style.fontSize = "50px";
+								break;
+							case 4:
+								cells[cellIndex].innerText = numArr[i][j];
+								cells[cellIndex].style.background = "#ede0c8";
+								cells[cellIndex].style.color = "#776e65";
+								cells[cellIndex].style.fontSize = "50px";
+								break;
+							case 8:
+								cells[cellIndex].innerText = numArr[i][j];
+								cells[cellIndex].style.background = "#f2b179";
+								cells[cellIndex].style.color = "#f9f6f2";
+								cells[cellIndex].style.fontSize = "50px";
+								break;
+							case 16:
+								cells[cellIndex].innerText = numArr[i][j];
+								cells[cellIndex].style.background = "#f59563";
+								cells[cellIndex].style.color = "#f9f6f2";
+								cells[cellIndex].style.fontSize = "50px";
+								break;
+							case 32:
+								cells[cellIndex].innerText = numArr[i][j];
+								cells[cellIndex].style.background = "#f67c5f";
+								cells[cellIndex].style.color = "#f9f6f2";
+								cells[cellIndex].style.fontSize = "50px";
+								break;
+							case 64:
+								cells[cellIndex].innerText = numArr[i][j];
+								cells[cellIndex].style.background = "#f65e3b";
+								cells[cellIndex].style.color = "#f9f6f2";
+								cells[cellIndex].style.fontSize = "50px";
+								break;
+							case 128:
+								cells[cellIndex].innerText = numArr[i][j];
+								cells[cellIndex].style.background = "#edcf72";
+								cells[cellIndex].style.color = "#f9f6f2";
+								cells[cellIndex].style.fontSize = "45px";
+								break;
+							case 256:
+								cells[cellIndex].innerText = numArr[i][j];
+								cells[cellIndex].style.background = "#edcc61";
+								cells[cellIndex].style.color = "#f9f6f2";
+								cells[cellIndex].style.fontSize = "45px";
+								break;
+							case 512:
+								cells[cellIndex].innerText = numArr[i][j];
+								cells[cellIndex].style.background = "#edc850";
+								cells[cellIndex].style.color = "#f9f6f2";
+								cells[cellIndex].style.fontSize = "45px";
+								break;
+							case 1024:
+								cells[cellIndex].innerText = numArr[i][j];
+								cells[cellIndex].style.background = "#edc53f";
+								cells[cellIndex].style.color = "#f9f6f2";
+								//当数字达大于等于1024时设置字体大小为35px
+								cells[cellIndex].style.fontSize = "35px";
+								break;
+							case 2048:
+								cells[cellIndex].innerText = numArr[i][j];
+								cells[cellIndex].style.background = "#edc22e";
+								cells[cellIndex].style.color = "#f9f6f2";
+								cells[cellIndex].style.fontSize = "35px";
+								break;
+							case 4096:
+								cells[cellIndex].innerText = numArr[i][j];
+								cells[cellIndex].style.background = "#edc22e";
+								cells[cellIndex].style.color = "#f9f6f2";
+								cells[cellIndex].style.fontSize = "35px";
+								break;
+						}
+					}
+				}
+				if(CanMoveUpArr().indexOf(true)==-1&&CanMoveDownArr().indexOf(true)==-1
+				&&CanMoveLeftArr().indexOf(true)==-1&&CanMoveRightArr().indexOf(true)==-1
+				){
+					SetEndMsg("Game over!");
+				}
+			}
+			//获取数组中的最大值
+			function GetArrMax(arr) {
+				var temp = arr[0];
+				for(var i = 0; i < arr.length - 1; i++) {
+					temp = Math.max(temp, arr[i + 1]);
+				}
+				return temp;
+			}
+			//移動后設置 新的值。moveDirection：向手指移動方向。只有這四個值 up,down,left,right
+			function SetNewNum(moveDirection) {
+				var i, j, x = -1,
+					y = -1,
+					position, temp,
+					spaceNum = 0, //空白格子總數
+					weight,
+					x2, y2;
+				//權重，表示手指移動飯方向的格子有較大幾率出現新的數字
+				weight = GetRandomWeight();
+				switch(moveDirection) {
+					case "up":
+						y = length - weight - 1;
+						y2 = length - 1;
+						break;
+					case "down":
+						y = weight;
+						y2 = 0;
+						break;
+					case "left":
+						x = length - weight - 1;
+						x2 = length - 1;
+						break;
+					case "right":
+						x = weight;
+						x2 = 0;
+						break;
+					default:
+						return;
+				}
+				for(i = 0; i < length; i++) {
+					for(j = 0; j < length; j++) {
+						if(numArr[i][j] == 0) {
+							spaceNum++; //空白格子總數
+						}
+					}
+				}
+				if(x == -1) { //上下滑動
+					position = [];
+					for(i = 0; i < numArr.length; i++) {
+						if(numArr[y][i] == 0) {
+							position.push(i); //保存 x 方向坐標
+						}
+					}
+					if(position.length > 0) {
+						temp = parseInt(Math.random() * 100) % position.length;
+						numArr[y][position[temp]] = RandomStartNum(spaceNum);
+						moveNumArr[y][position[temp]] = 2;
+					} else {
+						for(i = 0; i < numArr.length; i++) {
+							if(numArr[y2][i] == 0) {
+								position.push(i);
+							}
+						}
+						temp = parseInt(Math.random() * 100) % position.length;
+						numArr[y2][position[temp]] = RandomStartNum(spaceNum);
+						moveNumArr[y2][position[temp]] = 2;
+					}
+				} else { //左右滑動
+					position = [];
+					for(i = 0; i < numArr.length; i++) {
+						if(numArr[i][x] == 0) {
+							position.push(i); //保存 y 方向坐標
+						}
+					}
+					if(position.length > 0) {
+						temp = parseInt(Math.random() * 100) % position.length;
+						numArr[position[temp]][x] = RandomStartNum(spaceNum);
+						moveNumArr[position[temp]][x] = 2;
+					} else {
+						for(i = 0; i < numArr.length; i++) {
+							if(numArr[i][x2] == 0) {
+								position.push(i);
+							}
+						}
+						temp = parseInt(Math.random() * 100) % position.length;
+						numArr[position[temp]][x2] = RandomStartNum(spaceNum);
+						moveNumArr[position[temp]][x2] = 2;
+					}
+				}
+
+			}
+			//獲取隨機權重，0表示最大，數字越大權重越低
+			function GetRandomWeight() {
+				//4	25 25 25 25       ->40 70 90 100
+				//6 16 16 16 16 16 16 ->30 50 70 80 90 100
+				var all = parseInt(Math.random() * 100);
+				switch(length) {
+					case 4:
+						if(all < 40) {
+							return 0;
+						} else if(all < 70) {
+							return 1;
+						} else if(all < 90) {
+							return 2;
+						} else {
+							return 3;
+						}
+						break;
+					case 6:
+						if(all < 30) {
+							return 0;
+						} else if(all < 50) {
+							return 1;
+						} else if(all < 70) {
+							return 2;
+						} else if(all < 80) {
+							return 3;
+						} else if(all < 90) {
+							return 4;
+						} else {
+							return 5;
+						}
+						break;
+				}
+			}
+			//随机获取新值 , spaceNum表示當前 空白格子總數
+			function RandomStartNum(spaceNum) {
+				if(spaceNum) {
+					if(spaceNum <= length) {
+						spaceNum = 30;
+					} else if(spaceNum <= 2 * length) {
+						spaceNum = 10;
+					} else {
+						spaceNum = 20;
+					}
+				} else {
+					spaceNum = 5;
+				}
+				var randomNum = parseInt(Math.random() * 100);
+				if(randomNum < spaceNum) {
+					return 4;
+				}
+				return 2;
+			}
+		</script>
+	</body>
+
+</html>
